@@ -53,9 +53,13 @@ public class Main extends Application {
 
     //Prints previous scores
     btScore.setOnAction(e -> {
-      //TODO
       System.out.println("Loading previous scores ...");
-      //readScore();
+      try {
+      readScore();
+      }
+      catch(FileNotFoundException err) {
+        System.out.println("ERROR - FILE NOT FOUND");
+      }
     });
 
     //Closes menu
@@ -71,11 +75,10 @@ public class Main extends Application {
     primaryStage.show(); // Display the stage
   }
 
-  /*
-  public static void readScore() throws Exception {
+  public static void readScore() throws FileNotFoundException {
     try {
       // Create a File instance
-      java.io.File file = new java.io.File("scores.txt");
+      File file = new java.io.File("scores.txt");
 
       // Create a Scanner for the file
       Scanner input = new Scanner(file);
@@ -90,11 +93,10 @@ public class Main extends Application {
       // Close the file
       input.close();
     }
-    catch(Exception e){
-      System.out.println("Exception caught...");
+    catch(FileNotFoundException err){
+      System.out.println("ERROR - FILE NOT FOUND");
     }
   }
-  */
 
   public static void main(String[] args) {
     launch(args);
