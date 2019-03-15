@@ -16,7 +16,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.*;
 //import javafx.scene.control.Label;
 
-public class test extends Application{
+public class fallingCircles extends Application{
 
   List circles = new ArrayList();
   List circles2 = new ArrayList();
