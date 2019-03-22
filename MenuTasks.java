@@ -25,6 +25,8 @@ public class MenuTasks implements Runnable {
             btns.getChildren().get(1).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+                    //Invokes the switchpane method to set the scene to the game pane
+
                     a.switchPane("Game Pane");
                     playerTasks playertask = new playerTasks(p,a.getFocus(),a);
                     Thread pthread=new Thread(playertask);
