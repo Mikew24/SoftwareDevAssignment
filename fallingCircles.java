@@ -1,3 +1,4 @@
+package Code;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.geometry.Bounds;
@@ -134,37 +135,4 @@ public class fallingCircles extends Application{
       launch();
   }
 
-    /*Random r = new Random();
-
-    ArrayList<Circle> circle = new ArrayList<>();
-    int inc = 50;
-
-
-    for(int i = 0; i < 10; i++){
-      double random = Math.random() * scene.getWidth() + 1;
-      circle.add(new Circle(random, 0, 5, Color.RED));
-    }
-
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          while (true) {
-            Platform.runLater(new Runnable() {
-              @Override
-              public void run() {
-                for (Circle myCircle:circle){
-                  myCircle.setCenterY(myCircle.getCenterY() + 1);
-                }
-              }
-            });
-            Thread.sleep(10);
-          }
-        }
-        catch (InterruptedException ex) {
-        }
-      }
-    }).start();
-
-    pane.getChildren().addAll(circle);*/
 }

@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MenuTasks implements Runnable {
     private Scene menu;
@@ -46,10 +47,8 @@ public class MenuTasks implements Runnable {
         btns.getChildren().get(3).setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                a.kill();
-                Thread.yield();
-                System.out.print("Im running");
-
+                Stage stage = (Stage) btns.getChildren().get(3).getScene().getWindow();
+                stage.close();
             }
         });
         }

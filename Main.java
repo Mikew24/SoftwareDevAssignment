@@ -36,26 +36,9 @@ public class Main extends Application {
     @Override
 
     public void start(Stage MainStage){
-        BorderPane pane = new BorderPane(); //Creates a border pane
-        pane.setStyle("-fx-background-color: black"); //Sets background colour of pane
-
-        //---------------------------- Title ---------------------------------------
-        Text title = new Text(50, 50, "Asteroid Dodger"); //Creates title
-        title.setFill(Color.WHITE); //Sets colour
-        Font fontNormal = Font.font("Futura", FontWeight.NORMAL, FontPosture.REGULAR, 50); //creates font option
-        title.setFont(fontNormal); //applies font to title
-
-        //---------------------------- Buttons -------------------------------------
-        Button btPlay = new Button("PLAY");
-        Button btScore = new Button("SCORE");
-        Button btExit = new Button("EXIT");
-        //------------------- Setting Title & Buttons to Pane ----------------------
-        VBox paneMenu = new VBox(20);
-        paneMenu.setPadding(new Insets(15, 5, 5, 5));
-        paneMenu.getChildren().addAll(title, btPlay, btScore, btExit);
-        paneMenu.setAlignment(Pos.CENTER);
-
-        pane.setCenter(paneMenu);
+        Menu m = new Menu();
+        BorderPane pane = m.getPane();
+        VBox paneMenu = m.getPaneMenu();
 
         Player player = new Player();
         Pane p = new Pane();
@@ -66,13 +49,7 @@ public class Main extends Application {
         a.add("Flow",pane);
         a.switchPane("Flow");
         a.add("Game Pane",p);
-        //a.switchPane("Game Pane");
 
-
-        MainStage.setScene(a.getFocus());
-        if(a.getFocus()==null){
-            MainStage.close();
-        }
         playerTasks playermove = new playerTasks(player,s,a);
         MenuTasks Menu = new MenuTasks(s,a,player,paneMenu);
         Thread playerThread = new Thread(playermove);
@@ -83,35 +60,5 @@ public class Main extends Application {
         MenuThread.start();
 
 
-//        s.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                if(event.getCode()== KeyCode.RIGHT||event.getCode()==KeyCode.D){
-//                    a.switchPane("Game Pane");
-//                    playerThread.start();
-//                    System.out.println("SWITCHED");
-//                }
-//            }
-//        });
-//        s.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                System.out.println(event.getCode());
-//                if(event.getCode()== KeyCode.RIGHT||event.getCode()==KeyCode.D){
-//                    player.setLayoutX(player.getLayoutX()+1);
-//                }
-//            }
-//        });
     }
-//    public void draw(Scene s){
-//
-//    }
-//    public void update(Scene s){
-//        s.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                if(event.getCode())
-//            }
-//        });
-//    }
 }

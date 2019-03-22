@@ -15,7 +15,7 @@ public class SceneControl {
 
     }
     public void kill(){
-        HashMap
+        Panelist=null;
         Focus=null;
     }
     public void add(String s, Pane p){
