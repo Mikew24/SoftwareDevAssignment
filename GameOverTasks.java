@@ -6,12 +6,16 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameOverTasks implements Runnable {
     private Scene Gameover;
@@ -25,6 +29,10 @@ public class GameOverTasks implements Runnable {
     }
 
     public void run() {
+        File song = new File("bensound-newdawn.mp3");
+        System.out.println(song.exists());
+        MediaPlayer m = new MediaPlayer(new Media("file://bensound-newdawn.mp3"));
+        m.play();
         //save score
         Fields.getChildren().get(3).setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
