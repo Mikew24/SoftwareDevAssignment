@@ -14,6 +14,8 @@ import javafx.scene.*;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.*;
+import javafx.scene.input.MouseEvent;
+import java.lang.*;
 //import javafx.scene.control.Label;
 
 public class fallingCircles extends Application{
@@ -91,23 +93,29 @@ public class fallingCircles extends Application{
        return (int)(Math.random() * max + min);
    }
 
+   //int s = 1;
    public void gameUpdate(){
      for(int i = 0; i < circles.size(); i++) {
       ((Circle) circles.get(i)).setLayoutY(((Circle) circles.get(i)).getLayoutY() + speed + ((Circle) circles.get(i)).getLayoutY() / 150 );
       ((Circle) circles2.get(i)).setLayoutY(((Circle) circles2.get(i)).getLayoutY() + speed + ((Circle) circles2.get(i)).getLayoutY() / 150 );
-      //Shape intersect = Shape.intersect((Circle) circles.get(i), block);
 
-    /*  if (intersect.getBoundsInParent().getWidth() > 0) {
-        pane.getChildren().removeAll(circles);
-        timeline.stop();
-        t.setX(pane.getWidth()/2);
-        t.setY(pane.getHeight()/2);
-        t.setFont(new Font(50));
-        t.setWrappingWidth(200);
-        t.setTextAlignment(TextAlignment.CENTER);
-        t.setText("GAME OVER");
-        pane.getChildren().add(t);
-      }*/
+      //testing what happens when mouse intersects with shape
+      /*((Circle) circles2.get(i)).setOnMouseEntered(new EventHandler<MouseEvent>() {
+          //@Override
+          public void handle(MouseEvent e) {
+          pane.getChildren().remove(((Circle) circles2.get(i)));
+          circles2.remove(i);
+          }
+      });*/
+
+      //testing collision event
+      ((Circle) circles.get(i)).setOnMouseEntered(e->{
+          //@Override
+          //public void handle(MouseEvent e) {
+            //System.out.println("game over");
+            System.exit(0);
+
+      });
 
       //remove circle(s) when it gets to the bottom of the pane
       if(((Circle) circles.get(i)).getLayoutY() >= pane.getHeight()) {
