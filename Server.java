@@ -55,7 +55,7 @@ public class Server extends Application {
 
         while (true) {
           //read score from clent
-          int score = inputFromClient.readUTF();
+          int score = inputFromClient.readInt();
 
           //display final score on server
           Platform.runLater(() -> {
