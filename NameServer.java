@@ -1,4 +1,4 @@
-package Code;
+package SoftwareDevAssignment;
 
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
