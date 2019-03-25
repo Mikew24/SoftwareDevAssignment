@@ -1,4 +1,4 @@
-package Code;
+package SoftwareDevAssignment;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
