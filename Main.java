@@ -62,6 +62,15 @@ public class Main extends Application {
         MenuThread.start();
        // goThread.start();
         MainStage.setScene(a.getFocus());
+        // getting title name
+        Client c= new Client();
+        NameServer ns = new NameServer();
+        Thread gettheTitle = new Thread(ns);
+        gettheTitle.start();
+        MainStage.setTitle(c.getname());
+
+
+        //Showing stage
         MainStage.show();
         //MenuThread.start();
 

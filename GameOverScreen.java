@@ -39,6 +39,7 @@ public class GameOverScreen {
         //---------------------------- Textfield -----------------------------------
         TextField tfName = new TextField();
         tfName.setMaxWidth(100);
+        tfName.setAlignment(Pos.CENTER);
 
         //------------------- Setting Title & Buttons to Pane ----------------------
         VBox paneMenu = new VBox(20);
