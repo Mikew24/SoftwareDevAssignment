@@ -20,8 +20,11 @@ How to run:
     5. Select '1: junit'
     6. Project name should be 'SoftwareDevAssignment'
     7. Source package is also 'SoftwareDevAssignment'
-    8. Make sure all files are in src -> main -> java -> SoftwareDevAssignment directory
-    9. Use the build.gradle file provided in the master branch on github
-    10. Change to the proper directory in your terminal and run 'gradle build'
-    11. Run 'gradle run'
-    12. Play the game!
+    8. Make sure all '.java' files are in src -> main -> java -> SoftwareDevAssignment directory
+    9. Make sure all '.java' files have 'package SoftwareDevAssignment;' at the top of the file
+    10. Use the build.gradle file provided in the master branch on github
+    11. Change to the proper directory in your terminal and run 'gradle build'
+    12. Run 'gradle run'
+    13. Play the game!
+    
+
