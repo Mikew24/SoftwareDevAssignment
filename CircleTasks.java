@@ -115,8 +115,8 @@ public class CircleTasks implements Runnable {
             circles.add(circle());
             circles2.add(circle2());
             scoret.setFont(new Font(20));
-            pane.getChildren().add(((Node) circles.get(circles.size() - 1)));
             pane.getChildren().add(((Node) circles2.get(circles2.size() - 1)));
+            pane.getChildren().add(((Node) circles.get(circles.size() - 1)));
             Node score = pane.getChildren().get(0);
             if (score instanceof Text) {
                 ((Text) score).setText("Score:" + Integer.toString(sum));
@@ -149,18 +149,7 @@ public class CircleTasks implements Runnable {
         timer.start();
     }
     public void gameUpdate(){
-//        boopViewMedia.getMediaPlayer().setOnEndOfMedia(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-//        oofViewMedia.getMediaPlayer().setOnEndOfMedia(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
+
         for( i = 0; i<circles2.size()-1;i++){
             ((Circle) circles2.get(i)).setLayoutY(((Circle) circles2.get(i)).getLayoutY() + speed + ((Circle) circles2.get(i)).getLayoutY() / 150 );
             Node n = (Node)circles2.get(i);
@@ -171,9 +160,6 @@ public class CircleTasks implements Runnable {
                     boopViewMedia.getMediaPlayer().seek(Duration.ZERO);
                     ((Circle) circles2.get(i)).setFill(Color.BLACK);
                     pane.getChildren().remove(n);
-
-//                circles2.remove(i);
-//                pane.getChildren().remove(n);
                     sum++;
                 }
             });
@@ -194,8 +180,6 @@ public class CircleTasks implements Runnable {
                 oofViewMedia.getMediaPlayer().seek(Duration.ZERO);
                 lifes--;
                 System.out.println("Lives:"+lifes);
-//                pane.getChildren().remove(n);
-//                circles.remove(z);
             });
             if(n.getLayoutY()>=350){
                 pane.getChildren().remove(n);
