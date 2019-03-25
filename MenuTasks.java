@@ -1,4 +1,4 @@
-package Code;
+package SoftwareDevAssignment;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
