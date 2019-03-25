@@ -15,8 +15,13 @@ How to run:
   To run the application: 
     1. Download all files from master branch 
     2. Use 'gradle init' to initalize gradle
-    3. Make sure all files are in src -> main -> java -> 'assignment name' directory
-    4. Use the gradle.build file provided in the master branch on github
-    5. Change to the proper directory in your terminal and run 'gradle build'
-    6. Run 'gradle run'
-    7. Play the game!
+    3. Select '4: java-application'
+    4. Select '1: groovy'
+    5. Select '1: junit'
+    6. Project name should be 'SoftwareDevAssignment'
+    7. Source package is also 'SoftwareDevAssignment'
+    8. Make sure all files are in src -> main -> java -> SoftwareDevAssignment directory
+    9. Use the build.gradle file provided in the master branch on github
+    10. Change to the proper directory in your terminal and run 'gradle build'
+    11. Run 'gradle run'
+    12. Play the game!
