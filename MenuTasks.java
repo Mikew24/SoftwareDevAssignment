@@ -11,13 +11,13 @@ public class MenuTasks implements Runnable {
     private Scene menu;
     private SceneControl a;
     Scene s;
-    Player p;
+
 
     VBox btns;
-    public MenuTasks(Scene menu, SceneControl a, Player p, VBox btns){
+    public MenuTasks(Scene menu, SceneControl a, VBox btns){
         this.menu=menu;
         this.a=a;
-        this.p=p;
+
         this.btns=btns;
 
     }
@@ -28,10 +28,12 @@ public class MenuTasks implements Runnable {
                 public void handle(MouseEvent event) {
                     //Invokes the switchpane method to set the scene to the game pane
 
-                    a.switchPane("Game Pane");
-                    playerTasks playertask = new playerTasks(p,a.getFocus(),a);
-                    Thread pthread=new Thread(playertask);
-                    pthread.start();
+                    FallingCircle fc = new FallingCircle();
+                    CircleTasks ct = new CircleTasks(s,fc.getPane(),a,fc.getScoret(),fc.getLives());
+                    Thread GameWindow= new Thread(ct);
+                    a.add("G",fc.getPane());
+                    a.switchPane("G");
+                    GameWindow.start();
                     Thread.yield();
                     System.out.print("Im running");
 

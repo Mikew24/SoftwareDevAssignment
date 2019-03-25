@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -42,31 +43,24 @@ public class Main extends Application {
         BorderPane pane = m.getPane();
         VBox paneMenu = m.getPaneMenu();
 
-        Player player = new Player();
         Pane p = new Pane();
         //BorderPane Gameover =
-        p.getChildren().addAll(player);
-        Scene s=new Scene(pane);
+        Scene s=new Scene(pane,400,600);
         SceneControl a = new SceneControl(s);
         a.add("Flow",pane);
         a.switchPane("Flow");
         a.add("Game Pane",p);
         //Gameover//
-        GameOverScreen go = new GameOverScreen();
-        BorderPane gameo = go.getPane();
-        VBox gamem = go.getPaneMenu();
-        GameOverTasks gt= new GameOverTasks(s,a,gamem);
-        a.add("GameO",gameo);
-        a.switchPane("GameO");
-        Thread goThread = new Thread(gt);
-        //Gameover//
-        playerTasks playermove = new playerTasks(player,s,a);
-        MenuTasks Menu = new MenuTasks(s,a,player,paneMenu);
-        Thread playerThread = new Thread(playermove);
+
+
+
+        MenuTasks Menu = new MenuTasks(s,a,paneMenu);
+      //  Thread playerThread = new Thread(playermove);
         Thread ObjectThread;
         Thread PauseThread;
         Thread MenuThread = new Thread(Menu);
-        goThread.start();
+        MenuThread.start();
+       // goThread.start();
         MainStage.setScene(a.getFocus());
         MainStage.show();
         //MenuThread.start();

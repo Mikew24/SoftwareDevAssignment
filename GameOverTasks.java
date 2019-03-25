@@ -21,18 +21,19 @@ public class GameOverTasks implements Runnable {
     private Scene Gameover;
     private SceneControl a;
     private VBox Fields;
-
-    public GameOverTasks(Scene Gameover, SceneControl a, VBox Fields) {
+    private int score;
+    public GameOverTasks(Scene Gameover, SceneControl a, VBox Fields,int score) {
         this.Fields = Fields;
         this.a = a;
         this.Gameover = Gameover;
+        this.score=score;
     }
 
     public void run() {
-        File song = new File("bensound-newdawn.mp3");
-        System.out.println(song.exists());
-        MediaPlayer m = new MediaPlayer(new Media("file://bensound-newdawn.mp3"));
-        m.play();
+//        File song = new File("bensound-newdawn.mp3");
+//        System.out.println(song.exists());
+//        MediaPlayer m = new MediaPlayer(new Media("file://bensound-newdawn.mp3"));
+//        m.play();
         //save score
         Fields.getChildren().get(3).setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -69,7 +70,7 @@ public class GameOverTasks implements Runnable {
                 PrintWriter output = new PrintWriter(new FileWriter(file, true));
 
                 // Write initials from textfield to file
-                output.println(name);
+                output.println(name+" "+Integer.toString(score));
 
                 // Close the file
                 output.close();
