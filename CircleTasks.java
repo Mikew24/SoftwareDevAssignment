@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
@@ -72,9 +75,18 @@ public class CircleTasks implements Runnable {
 
     int i;
     int z;
+    String oof ="oof.wav";
+    Media oofSound = new Media(new File(oof).toURI().toString());
+    MediaPlayer playOof = new MediaPlayer(oofSound);
+
+    String boop ="boop.wav";
+    Media boopSound = new Media(new File(boop).toURI().toString());
+    MediaPlayer playBoop = new MediaPlayer(boopSound);
+    MediaView boopViewMedia =new MediaView(playBoop);
+    MediaView oofViewMedia =new MediaView(playOof);
     public void run() {
 
-
+        //pane.getChildren().addAll(oofViewMedia,boopViewMedia);
         int xincrease = 0;
         for (ImageView k : lives) {
             k.setX(15 + xincrease);
@@ -137,22 +149,40 @@ public class CircleTasks implements Runnable {
         timer.start();
     }
     public void gameUpdate(){
-
+//        boopViewMedia.getMediaPlayer().setOnEndOfMedia(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
+//        oofViewMedia.getMediaPlayer().setOnEndOfMedia(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         for( i = 0; i<circles2.size()-1;i++){
             ((Circle) circles2.get(i)).setLayoutY(((Circle) circles2.get(i)).getLayoutY() + speed + ((Circle) circles2.get(i)).getLayoutY() / 150 );
             Node n = (Node)circles2.get(i);
             n.setOnMouseEntered(event -> {
                 if(((Circle) circles2.get(i)).getFill()!=Color.BLACK) {
+
+                    boopViewMedia.getMediaPlayer().play();
+                    boopViewMedia.getMediaPlayer().seek(Duration.ZERO);
                     ((Circle) circles2.get(i)).setFill(Color.BLACK);
                     pane.getChildren().remove(n);
+
 //                circles2.remove(i);
 //                pane.getChildren().remove(n);
                     sum++;
                 }
             });
             if(n.getLayoutY()>=350){
+
+
                 pane.getChildren().remove(n);
                 circles2.remove(i);
+
             }
 
         }
@@ -160,6 +190,8 @@ public class CircleTasks implements Runnable {
             ((Circle) circles.get(z)).setLayoutY(((Circle) circles.get(z)).getLayoutY() + speed + ((Circle) circles.get(z)).getLayoutY() / 150 );
             Node n = (Node)circles.get(z);
             n.setOnMouseEntered(event -> {
+                oofViewMedia.getMediaPlayer().play();
+                oofViewMedia.getMediaPlayer().seek(Duration.ZERO);
                 lifes--;
                 System.out.println("Lives:"+lifes);
 //                pane.getChildren().remove(n);
