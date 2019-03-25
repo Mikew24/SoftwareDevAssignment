@@ -1,4 +1,4 @@
-package Code;
+package SoftwareDevAssignment;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
