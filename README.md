@@ -1,4 +1,4 @@
-Made by: Tyler Broda, Michael Waldron & Kim Montemayor
+Made by: Tyler Broda(TylerB11), Michael Waldron(Mikew24) & Kim Montemayor(kimmontemayor)
 
 Contributions:
   Tyler: Developed the main menu and game over screens. Implemented file IO allowing the user to save their score at the end
