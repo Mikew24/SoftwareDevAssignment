@@ -31,10 +31,6 @@ public class GameOverTasks implements Runnable {
     }
 
     public void run() {
-//        File song = new File("bensound-newdawn.mp3");
-//        System.out.println(song.exists());
-//        MediaPlayer m = new MediaPlayer(new Media("file://bensound-newdawn.mp3"));
-//        m.play();
         //save score
         Fields.getChildren().get(3).setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -55,8 +51,9 @@ public class GameOverTasks implements Runnable {
         });
 
     }
-
+    //Saves name to txt file
     public boolean saveFile(String name) {
+        //Checks if name has been entered in textfield
         if (name.isEmpty()) {
             TextField tfName = new TextField("Please enter a Name");
             tfName.setMaxWidth(100);
