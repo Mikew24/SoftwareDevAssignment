@@ -1,6 +1,4 @@
-//package SoftwareDevAssignment;
-package Code;
-
+package SoftwareDevAssignment;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;

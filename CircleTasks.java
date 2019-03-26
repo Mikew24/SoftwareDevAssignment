@@ -1,5 +1,4 @@
-//package SoftwareDevAssignment;
-package Code;
+package SoftwareDevAssignment;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -7,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;

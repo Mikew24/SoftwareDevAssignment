@@ -1,11 +1,13 @@
-//package SoftwareDevAssignment;
-package Code;
+package SoftwareDevAssignment;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+
+/* Main Application where the Menu will start and subsequently trigger other windows based on user input */
 
 public class Main extends Application {
     @Override
@@ -45,7 +47,7 @@ public class Main extends Application {
         MenuTasks Menu = new MenuTasks(s,a,paneMenu);
         Thread MenuThread = new Thread(Menu);
         MenuThread.start();
-        
+
         //making the stage display the active scene in the scenecontrol class aka the focus
         MainStage.setScene(a.getFocus());
 

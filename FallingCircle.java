@@ -1,5 +1,4 @@
-//package SoftwareDevAssignment;
-package Code;
+package SoftwareDevAssignment;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
