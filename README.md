@@ -6,14 +6,14 @@ Contributions:
   Kim: Developed the 'falling circles' functionality that displayed the falling asteroids. Implemented socket IO to display
        a new title each time the game is launched.
   Michael: Created tasks for menu & game & added sound effects. Implemented multi threading to allow the program to be
-           cohesive.
-           
+           cohesive. Implemented a Scene control class to allow for easy pane set up and changing.
+
 Repository:
   https://github.com/Mikew24/SoftwareDevAssignment/tree/master
-  
+
 How to run:
-  To run the application: 
-    1. Download all files from master branch 
+  To run the application:
+    1. Download all files from master branch
     2. Use 'gradle init' to initalize gradle
     3. Select '4: java-application'
     4. Select '1: groovy'
@@ -26,5 +26,3 @@ How to run:
     11. Change to the proper directory in your terminal and run 'gradle build'
     12. Run 'gradle run'
     13. Play the game!
-    
-
