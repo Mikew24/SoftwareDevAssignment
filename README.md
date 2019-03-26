@@ -4,7 +4,7 @@ Contributions:
   Tyler: Developed the main menu and game over screens. Implemented file IO allowing the user to save their score at the end
          of the game and view their old scores in the main menu.
   Kim: Developed the 'falling circles' functionality that displayed the falling asteroids. Implemented socket IO to display
-       the users current score as they play.
+       a new title each time the game is launched.
   Michael: Created tasks for menu & game & added sound effects. Implemented multi threading to allow the program to be
            cohesive.
            
