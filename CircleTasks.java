@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -22,48 +23,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CircleTasks implements Runnable {
-    private Scene s;
+    private Scene scene;
     private Pane pane;
-    private SceneControl a;
-    Text scoret;
+    private SceneControl sceneCtrl;
+    Text scoreText;
     ImageView lives[];
 
-    public CircleTasks(Scene s, Pane pane, SceneControl a,Text scoret, ImageView lives[]) {
-        this.s = s;
+    public CircleTasks(Scene scene, Pane pane, SceneControl sceneCtrl,Text scoreText, ImageView lives[]) {
+        this.scene = scene;
         this.pane = pane;
-        this.a = a;
-        this.lives=lives;
-        this.scoret=scoret;
+        this.sceneCtrl = sceneCtrl;
+        this.lives = lives;
+        this.scoreText = scoreText;
     }
 
-
     //Creating Red Circles
-    public Circle circle() {
-        Circle circle = new Circle();
-        circle.setLayoutX(rand(0, (int) pane.getWidth()));
-        circle.setLayoutY(1);
-        circle.setRadius(6);
-        circle.setFill(Color.RED);
-        return circle;
+    public Circle redCircle() {
+        Circle redCircle = new Circle();
+        redCircle.setLayoutX(rand(0, (int) pane.getWidth()));
+        redCircle.setLayoutY(1);
+        redCircle.setRadius(6);
+        redCircle.setFill(Color.RED);
+        return redCircle;
     }
 
     //Creating Blue Circles
-    public Circle circle2() {
-        Circle circle2 = new Circle();
-        circle2.setLayoutX(rand(0, (int) pane.getWidth()));
-        circle2.setLayoutY(1);
-        circle2.setRadius(10);
-        circle2.setFill(Color.BLUE);
-        return circle2;
+    public Circle blueCircle() {
+        Circle blueCircle = new Circle();
+        blueCircle.setLayoutX(rand(0, (int) pane.getWidth()));
+        blueCircle.setLayoutY(1);
+        blueCircle.setRadius(10);
+        blueCircle.setFill(Color.BLUE);
+        return blueCircle;
     }
 
-    //random number generator
+    //Random number generator
     public int rand(int min, int max) {
         return (int) (Math.random() * max + min);
     }
 
-    List circles = new ArrayList();
-    List circles2 = new ArrayList();
+    List redCircles = new ArrayList();
+    List blueCircles = new ArrayList();
+
     double speed;
     double falling;
 
@@ -72,20 +73,23 @@ public class CircleTasks implements Runnable {
     int sum = 0;
     int lifes = 3;
 
+    //Used in for loops in gameUpdate() method
     int i;
-    int z;
+    int j;
+
+    //oof sound
     String oof ="oof.wav";
     Media oofSound = new Media(new File(oof).toURI().toString());
     MediaPlayer playOof = new MediaPlayer(oofSound);
 
+    //boop sound
     String boop ="boop.wav";
     Media boopSound = new Media(new File(boop).toURI().toString());
     MediaPlayer playBoop = new MediaPlayer(boopSound);
-    MediaView boopViewMedia =new MediaView(playBoop);
-    MediaView oofViewMedia =new MediaView(playOof);
-    public void run() {
+    MediaView boopViewMedia = new MediaView(playBoop);
+    MediaView oofViewMedia = new MediaView(playOof);
 
-        //pane.getChildren().addAll(oofViewMedia,boopViewMedia);
+    public void run() {
         int xincrease = 0;
         for (ImageView k : lives) {
             k.setX(15 + xincrease);
@@ -93,14 +97,14 @@ public class CircleTasks implements Runnable {
             xincrease += 30;
         }
 
-        //Animation loops
+        //Initial speed of circles
         speed = 1;
         falling = 100;
 
         //draws circles
         timeline = new Timeline(new KeyFrame(Duration.millis(falling), event -> {
-            //Updating Lifes
 
+            //Updating Lifes
             switch (lifes) {
                 case 2:
                     pane.getChildren().remove(lives[2]);
@@ -110,84 +114,101 @@ public class CircleTasks implements Runnable {
                     break;
             }
 
+            //Speed increases as game continues running
             speed += falling / 5000;
-            circles.add(circle());
-            circles2.add(circle2());
-            scoret.setFont(new Font(20));
-            pane.getChildren().add(((Node) circles2.get(circles2.size() - 1)));
-            pane.getChildren().add(((Node) circles.get(circles.size() - 1)));
+
+            //Adding circles to a list
+            redCircles.add(redCircle());
+            blueCircles.add(blueCircle());
+
+            scoreText.setFont(new Font(20));
+
+            //Add circles to pane
+            pane.getChildren().add(((Node) blueCircles.get(blueCircles.size() - 1)));
+            pane.getChildren().add(((Node) redCircles.get(redCircles.size() - 1)));
+
+            //Update Score on screen
             Node score = pane.getChildren().get(0);
             if (score instanceof Text) {
                 ((Text) score).setText("Score:" + Integer.toString(sum));
             }
-
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
+        //Animate circles falling
         timer = new AnimationTimer() {
             @Override
             public void handle(long arg0) {
+
                 gameUpdate();
+
+                //When game is over (all lives lost)
                 if (lifes == 0) {
-                    //Game Over stuff
                     pane.getChildren().remove(lives[0]);
                     timeline.stop();
                     pane.getChildren().clear();
                     GameOverScreen GS = new GameOverScreen();
-                    GameOverTasks GameOvers = new GameOverTasks(s,a,GS.getPaneMenu(),sum);
+                    GameOverTasks GameOvers = new GameOverTasks(scene, sceneCtrl, GS.getPaneMenu(), sum);
                     Thread GO = new Thread(GameOvers);
-                    a.add("GO",GS.getPane());
-                    a.switchPane("GO");
+                    sceneCtrl.add("GO",GS.getPane());
+                    sceneCtrl.switchPane("GO");
                     GO.start();
                     this.stop();
-
                 }
             }
         };
         timer.start();
     }
+
+    //Method to update game
     public void gameUpdate(){
 
-        for( i = 0; i<circles2.size()-1;i++){
-            ((Circle) circles2.get(i)).setLayoutY(((Circle) circles2.get(i)).getLayoutY() + speed + ((Circle) circles2.get(i)).getLayoutY() / 150 );
-            Node n = (Node)circles2.get(i);
-            n.setOnMouseEntered(event -> {
-                if(((Circle) circles2.get(i)).getFill()!=Color.BLACK) {
+        //Loop dedicated to blue circles
+        for( i = 0; i < blueCircles.size()-1; i++){
+            //Update circle location (circle falling)
+            ((Circle) blueCircles.get(i)).setLayoutY(((Circle) blueCircles.get(i)).getLayoutY() + speed + ((Circle) blueCircles.get(i)).getLayoutY() / 150 );
 
+            Node n = (Node)blueCircles.get(i);
+
+            //When mouse hits blue circle, boop sound is played, blue circle disappears, and score is increased
+            n.setOnMouseEntered(event -> {
+                if(((Circle) blueCircles.get(i)).getFill()!=Color.BLACK) {
                     boopViewMedia.getMediaPlayer().play();
                     boopViewMedia.getMediaPlayer().seek(Duration.ZERO);
-                    ((Circle) circles2.get(i)).setFill(Color.BLACK);
+                    ((Circle) blueCircles.get(i)).setFill(Color.BLACK);
                     pane.getChildren().remove(n);
                     sum++;
                 }
             });
-            if(n.getLayoutY()>=350){
 
-
+            //Blue circles get removed if they are not hit and fall out of bounds
+            if(n.getLayoutY() >= 350){
                 pane.getChildren().remove(n);
-                circles2.remove(i);
-
+                blueCircles.remove(i);
             }
-
         }
-        for( z = 0; z<circles.size()-1;z++){
-            ((Circle) circles.get(z)).setLayoutY(((Circle) circles.get(z)).getLayoutY() + speed + ((Circle) circles.get(z)).getLayoutY() / 150 );
-            Node n = (Node)circles.get(z);
+
+        //Loop dedicated to blue circles
+        for(j = 0; j < redCircles.size()-1; j++){
+            //Update circle location (circle falling)
+            ((Circle) redCircles.get(j)).setLayoutY(((Circle) redCircles.get(j)).getLayoutY() + speed + ((Circle) redCircles.get(j)).getLayoutY() / 150 );
+            Node n = (Node)redCircles.get(j);
+
+            //When mouse hits red circle, oof sound plays and lives decreases
             n.setOnMouseEntered(event -> {
                 oofViewMedia.getMediaPlayer().play();
                 oofViewMedia.getMediaPlayer().seek(Duration.ZERO);
                 lifes--;
-                System.out.println("Lives:"+lifes);
+                System.out.println("Lives:" + lifes);
             });
-            if(n.getLayoutY()>=350){
+
+            //Red circles get removed when they fall out of bounds
+            if(n.getLayoutY() >= 350){
                 pane.getChildren().remove(n);
-                circles.remove(z);
+                redCircles.remove(j);
             }
 
         }
+    }
 }
-
-}
-
-

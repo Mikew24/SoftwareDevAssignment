@@ -18,13 +18,15 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class FallingCircle {
-    private Scene s;
+    private Scene scene;
     private Pane pane;
-    private Text scoret;
+    private Text scoreText;
     private ImageView[] lives;
+
     public FallingCircle(){
         this.setPane(new Pane());
-        Pane p =this.getPane();
+        Pane pane = this.getPane();
+
         //Music
         String mf= "alien.mp3";
         Media sound = new Media(new File(mf).toURI().toString());
@@ -36,41 +38,43 @@ public class FallingCircle {
                 mp.seek(Duration.ZERO);
             }
         });
+
         MediaView mv = new MediaView(mp);
 
+        //Creating hearts
         String img = "heart.jpg";
         Image life1 = new Image(new File(img).toURI().toString());
         ImageView lives[] = {new ImageView(life1), new ImageView(life1), new ImageView(life1)};
         this.setLives(lives);
+
         //BackGrounds
         BackgroundFill b = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
-        p.setBackground(new Background(b));
+        pane.setBackground(new Background(b));
         int sum = 0;
-        Text scoret = new Text(15, 30, "Score:" + Integer.toString(sum));
-        this.setScoret(scoret);
+        Text scoreText = new Text(15, 30, "Score:" + Integer.toString(sum));
+        this.setScoreText(scoreText);
+
         //Score Intialization
-        scoret.setFill(Color.WHITE);
-        p.getChildren().add(scoret);
-        //adding music to pane
-        p.getChildren().add(mv);
+        scoreText.setFill(Color.WHITE);
+        pane.getChildren().add(scoreText);
+
+        //Adding music to pane
+        pane.getChildren().add(mv);
 
         //Adding Hearts
-        p.getChildren().add(lives[0]);
-        p.getChildren().add(lives[1]);
-        p.getChildren().add(lives[2]);
-        this.setPane(p);
-        //this.setS(new Scene(getPane(),400,600));
-
-
+        pane.getChildren().add(lives[0]);
+        pane.getChildren().add(lives[1]);
+        pane.getChildren().add(lives[2]);
+        this.setPane(pane);
     }
 
 
-    public Scene getS() {
-        return s;
+    public Scene getScene() {
+        return scene;
     }
 
-    public void setS(Scene s) {
-        this.s = s;
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 
     public Pane getPane() {
@@ -81,12 +85,12 @@ public class FallingCircle {
         this.pane = pane;
     }
 
-    public Text getScoret() {
-        return scoret;
+    public Text getScoreText() {
+        return scoreText;
     }
 
-    public void setScoret(Text scoret) {
-        this.scoret = scoret;
+    public void setScoreText(Text scoreText) {
+        this.scoreText = scoreText;
     }
 
     public ImageView[] getLives() {
