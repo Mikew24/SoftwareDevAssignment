@@ -1,5 +1,5 @@
-package SoftwareDevAssignment;
-
+//package SoftwareDevAssignment;
+package Code;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
